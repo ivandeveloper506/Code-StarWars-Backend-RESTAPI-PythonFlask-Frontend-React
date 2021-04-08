@@ -39,32 +39,44 @@ export default function ShowPeopleCard() {
 					id="SearchPeople"
 				/>
 				<div className="row d-flex-row flex-nowrap overflow-auto mt-3">
-					{store.peoples
-						.filter(value => {
-							if (searchPeople === "") {
-								return value;
-							} else if (value.name.toLowerCase().includes(searchPeople.toLowerCase())) {
-								return value;
-							}
-						})
-						.map((item, index) => {
-							return (
-								<div key={index} className="col-lg-4 mb-5">
-									<PeopleCard
-										key={index}
-										cardId={index}
-										alt={item.name}
-										title={item.name}
-										gender={item.gender.charAt(0).toUpperCase() + item.gender.slice(1)}
-										hairColor={item.hair_color.charAt(0).toUpperCase() + item.hair_color.slice(1)}
-										eyeColor={item.eye_color.charAt(0).toUpperCase() + item.eye_color.slice(1)}
-										buttonUrl="/people-card-detail/"
-										buttonLabel="Learn More!"
-										imageUrl={PeopleCardImage}
-									/>
-								</div>
-							);
-						})}
+					{!store.peoples
+						? ""
+						: store.peoples
+								.filter(value => {
+									if (searchPeople === "") {
+										return value;
+									} else if (value.name.toLowerCase().includes(searchPeople.toLowerCase())) {
+										return value;
+									}
+								})
+								.map((item, index) => {
+									return (
+										<div key={index} className="col-lg-4 mb-5">
+											<PeopleCard
+												key={index}
+												cardId={index}
+												alt={item.name}
+												title={item.name}
+												gender={
+													"Gender" // item.gender_cat_id.charAt(0).toUpperCase() + item.gender_cat_id.slice(1)
+												}
+												hairColor={
+													"Hair Color"
+													// item.hair_color_cat_id.charAt(0).toUpperCase() +
+													// item.hair_color_cat_id.slice(1)
+												}
+												eyeColor={
+													"Eye Color"
+													// item.eye_color_cat_id.charAt(0).toUpperCase() +
+													// item.eye_color_cat_id.slice(1)
+												}
+												buttonUrl="/people-card-detail/"
+												buttonLabel="Learn More!"
+												imageUrl={PeopleCardImage}
+											/>
+										</div>
+									);
+								})}
 				</div>
 			</div>
 		</div>

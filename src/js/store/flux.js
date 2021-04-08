@@ -13,9 +13,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				if (localStoragePeoples === null || localStoragePeoples === undefined) {
 					// Si localStorage NO existe, entonces se cargan los datos de la API.
-					const url = "https://swapi.dev/api/people/";
+					const url = "https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/peoples";
 					const response = await fetch(url);
 					const data = await response.json();
+
+					console.log("*** data people ***");
+					console.log(data);
+
 					setStore({ peoples: data.results });
 
 					localStorage.setItem("peoplesAPI", JSON.stringify(data.results));
