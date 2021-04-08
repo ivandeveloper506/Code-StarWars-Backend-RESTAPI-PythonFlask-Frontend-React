@@ -17,13 +17,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch(url);
 					const data = await response.json();
 
-					console.log("*** data people ***");
+					console.log("*** data people API ***");
 					console.log(data);
 
-					setStore({ peoples: data.results });
+					console.log("*** data.results people API ***");
+					console.log(data.results);
 
-					localStorage.setItem("peoplesAPI", JSON.stringify(data.results));
+					setStore({ peoples: data });
+
+					localStorage.setItem("peoplesAPI", JSON.stringify(data));
 				} else {
+					console.log("*** data people localStorage ***");
+					console.log(localStoragePeoples);
+
 					// Si localStorage SI existe, entonces se cargan los datos de la variable local, para no volver a realizar Request.
 					setStore({ peoples: JSON.parse(localStoragePeoples) });
 				}

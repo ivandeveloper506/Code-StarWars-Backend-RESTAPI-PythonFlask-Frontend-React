@@ -45,17 +45,15 @@ export default function PeopleCardDetail() {
 														<h2 className="card-title text-center">{item.name}</h2>
 														<p className="card-text text-left m-0">
 															Gender:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															{item.gender.charAt(0).toUpperCase() + item.gender.slice(1)}
+															{item.gender_cat_id}
 														</p>
 														<p className="card-text text-left m-0">
 															Hair Color:&nbsp;&nbsp;&nbsp;
-															{item.hair_color.charAt(0).toUpperCase() +
-																item.hair_color.slice(1)}
+															{item.hair_color_cad_id}
 														</p>
 														<p className="card-text text-left m-0">
 															Eye Color:&nbsp;&nbsp;&nbsp;&nbsp;
-															{item.eye_color.charAt(0).toUpperCase() +
-																item.eye_color.slice(1)}
+															{item.eye_color_cat_id}
 														</p>
 														<p className="card-text text-left m-0">
 															Height:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -67,8 +65,7 @@ export default function PeopleCardDetail() {
 														</p>
 														<p className="card-text text-left m-0">
 															Skin Color:&nbsp;&nbsp;&nbsp;&nbsp;
-															{item.skin_color.charAt(0).toUpperCase() +
-																item.skin_color.slice(1)}
+															{item.skin_color_cat_id}
 														</p>
 														<div className="card-button-back d-block">
 															<Link to="/show-people-card">
