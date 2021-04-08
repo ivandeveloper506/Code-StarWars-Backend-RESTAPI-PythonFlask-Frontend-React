@@ -1,15 +1,13 @@
+/********************************************************************************/
+/* Fecha Creación:  23 Marzo 2021.                                              */
+/* Autor:           Iván Fonseca Castro                                         */
+/*                                                                              */
+/* Descripción:     Vista principal Home, se renderiza la primera vez que se    */
+/*                  carga la aplicación.                                        */
+/********************************************************************************/
+
 import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
+import ShowPeopleCard from "./show-people-card";
 import "../../styles/home.scss";
 
-export const Home = () => (
-	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
-	</div>
-);
+export const Home = () => <ShowPeopleCard />;

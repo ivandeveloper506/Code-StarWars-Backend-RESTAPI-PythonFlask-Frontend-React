@@ -1,3 +1,85 @@
-/* 
-    General Styles
-*/
+/*******************************************************************************/
+/* Fecha Creación: 23 Marzo 2021.                                            */
+/* Autor:          Iván Fonseca Castro                                         */
+/*                                                                             */
+/* Descripción:    Hoja principal de estilos, permite personalizar los estilos */
+/*                 a utilizar en los componentes del sitio Web.                */
+/*******************************************************************************/
+
+body{
+    background-image: url('.././img/star-wars-bg.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.topCardClass{
+    margin: 100px;
+}
+
+.cardMain{
+    border-radius: 5px;
+}
+
+.cardImage{
+   border-radius: 5px 5px 0px 0px;
+}
+
+.card-body{
+    background: rgba(40,39,39, 0.6);
+    color: white;
+}
+
+.card-footer{
+    background: rgba(255,255,255, 0.6);
+}
+
+.navbarClass{
+    background: rgb(65, 62, 62);
+    color: white;
+}
+
+.logo-class{
+    font-size: 30px;
+}
+
+.card-image-detail{
+   border-radius: 5px 0px 0px 5px;
+   height: 300px;
+}
+
+.card-body-detail{
+    height: 300px;
+    border-radius: 0px 5px 5px 0px;
+    margin-left: 70px;
+}
+
+.card-button-back{
+    margin: 20px 80px 0px 80px;
+}
+
+.dropdown-item-class{
+    color: blue;
+    width: 270px;
+}
+
+.fa-trash:before {
+    color: red;
+}
+
+.not-found-page-text-class{
+    color: white;
+    font-size: 75px;
+}
+
+.classTagline {
+    height: 100vh;
+    display: flex;
+    background-image: url('.././img/not-found-page.jpg');
+    background-position: center;
+}
+
+.active{
+    background-color: gold;
+    font-weight: bold;
+    border-radius: 5px;
+}

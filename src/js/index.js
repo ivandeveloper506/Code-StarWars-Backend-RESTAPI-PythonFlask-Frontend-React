@@ -1,3 +1,10 @@
+/********************************************************************************/
+/* Fecha Creación:  23 Marzo 2021.                                              */
+/* Autor:           Iván Fonseca Castro                                         */
+/*                                                                              */
+/* Descripción:     Archivo principal para renderizar el componente principal.  */
+/********************************************************************************/
+
 //import react into the bundle
 import React from "react";
 import ReactDOM from "react-dom";
