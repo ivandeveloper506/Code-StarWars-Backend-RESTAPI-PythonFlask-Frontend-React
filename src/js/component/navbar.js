@@ -16,12 +16,12 @@ export const Navbar = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		history.push("/show-people-card");
+		history.push("/home-page");
 	}, []);
 
 	return (
 		<nav className="navbar navbar-light mb-3 fixed-top navbarClass">
-			<Link to="/show-people-card">
+			<Link to="/home-page">
 				<span className="navbar-brand logo-class text-white mb-0 h1">Star Wars Blog</span>
 			</Link>
 
@@ -41,9 +41,30 @@ export const Navbar = () => {
 				</span>
 			</NavLink>
 
-			<div className="ml-auto">
-				{/* Invoca el componente que permite crear la lista de items. */}
-				<DropdownItem />
+			{/* <div className="ml-auto">
+				<NavLink to="/login-page">
+					<button type="button" className="btn btn-success">
+						Ingresar
+					</button>
+				</NavLink>
+			</div> */}
+
+			<div className="ml-auto d-flex justify-content-between">
+				<div className="mr-5">
+					<p>Usuario Conectado</p>
+				</div>
+				<div className="mr-3">
+					<NavLink to="/login-page">
+						{/* <span className="navbar-brand text-white ml-3 mb-0 h1">Ingresar</span> */}
+						<button type="button" className="btn btn-success">
+							Ingresar
+						</button>
+					</NavLink>
+				</div>
+				<div>
+					{/* Invoca el componente que permite crear la lista de items. */}
+					<DropdownItem />
+				</div>
 			</div>
 		</nav>
 	);

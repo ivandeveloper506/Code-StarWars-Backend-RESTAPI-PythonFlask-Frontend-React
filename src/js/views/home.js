@@ -7,7 +7,6 @@
 /********************************************************************************/
 
 import React from "react";
-import ShowPeopleCard from "./show-people-card";
-import "../../styles/home.scss";
+import HomePage from "./home-page";
 
-export const Home = () => <ShowPeopleCard />;
+export const Home = () => <HomePage />;
