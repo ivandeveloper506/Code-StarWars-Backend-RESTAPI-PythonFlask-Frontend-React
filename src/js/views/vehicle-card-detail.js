@@ -49,8 +49,8 @@ export default function VehicleCardDetail() {
 														</p>
 														<p className="card-text text-left m-0">
 															Vehicle Class:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															{item.vehicle_class.charAt(0).toUpperCase() +
-																item.vehicle_class.slice(1)}
+															{"Vehicle Class"}{" "}
+															{/* {item.vehicle_class.charAt(0).toUpperCase() + item.vehicle_class.slice(1)} */}
 														</p>
 														<p className="card-text text-left m-0">
 															Passengers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

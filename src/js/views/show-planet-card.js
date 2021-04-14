@@ -55,8 +55,8 @@ export default function ShowPlanetCard() {
 										cardId={index}
 										alt={item.name}
 										name={item.name}
-										terrain={item.terrain.charAt(0).toUpperCase() + item.climate.slice(1)}
-										climate={item.climate.charAt(0).toUpperCase() + item.climate.slice(1)}
+										terrain="Terrain" //{item.terrain.charAt(0).toUpperCase() + item.climate.slice(1)}
+										climate="Climate" //{item.climate.charAt(0).toUpperCase() + item.climate.slice(1)}
 										population={item.population}
 										buttonUrl="/planet-card-detail/"
 										buttonLabel="Learn More!"

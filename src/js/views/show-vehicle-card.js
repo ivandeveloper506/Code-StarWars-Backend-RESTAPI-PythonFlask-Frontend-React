@@ -56,9 +56,7 @@ export default function ShowVehicleCard() {
 										alt={item.name}
 										name={item.name}
 										model={item.model.charAt(0).toUpperCase() + item.model.slice(1)}
-										vehicle_class={
-											item.vehicle_class.charAt(0).toUpperCase() + item.vehicle_class.slice(1)
-										}
+										vehicle_class="Vehicle Class" //{item.vehicle_class.charAt(0).toUpperCase() + item.vehicle_class.slice(1)}
 										passengers={item.passengers}
 										buttonUrl="/vehicle-card-detail/"
 										buttonLabel="Learn More!"

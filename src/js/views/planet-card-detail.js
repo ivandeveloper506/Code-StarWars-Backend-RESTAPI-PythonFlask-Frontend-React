@@ -45,13 +45,13 @@ export default function PlanetCardDetail() {
 														<h2 className="card-title text-center">{item.name}</h2>
 														<p className="card-text text-left m-0">
 															Terrain:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															{item.terrain.charAt(0).toUpperCase() +
-																item.terrain.slice(1)}
+															{"Terrain"}{" "}
+															{/* {item.terrain.charAt(0).toUpperCase() + item.terrain.slice(1)} */}
 														</p>
 														<p className="card-text text-left m-0">
 															Climate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															{item.climate.charAt(0).toUpperCase() +
-																item.climate.slice(1)}
+															{"Climate"}{" "}
+															{/* {item.climate.charAt(0).toUpperCase() + item.climate.slice(1)} */}
 														</p>
 														<p className="card-text text-left m-0">
 															Population:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
