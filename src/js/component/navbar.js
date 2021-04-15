@@ -54,10 +54,10 @@ export const Navbar = () => {
 					<p>Usuario Conectado</p>
 				</div>
 				<div className="mr-3">
-					<NavLink to="/login-page">
+					<NavLink to="/login">
 						{/* <span className="navbar-brand text-white ml-3 mb-0 h1">Ingresar</span> */}
-						<button type="button" className="btn btn-success">
-							Ingresar
+						<button type="button" className="btn btn-danger">
+							Iniciar sesión
 						</button>
 					</NavLink>
 				</div>

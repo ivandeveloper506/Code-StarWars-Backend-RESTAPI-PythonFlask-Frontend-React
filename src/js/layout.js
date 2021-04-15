@@ -22,6 +22,7 @@ import { Footer } from "./component/footer";
 import HomePage from "./views/home-page";
 import LoginPage from "./views/login-page";
 import RegisterPage from "./views/register-page";
+import RecoverPage from "./views/recover-page";
 
 //create your first component
 const Layout = () => {
@@ -35,9 +36,10 @@ const Layout = () => {
 				<Navbar />
 				<Switch>
 					<Route exact path="/" component={Home} />
-					<Route exact path="/login-page" component={LoginPage} />
 					<Route exact path="/home-page" component={HomePage} />
-					<Route exact path="/register-page" component={RegisterPage} />
+					<Route exact path="/login" component={LoginPage} />
+					<Route exact path="/register" component={RegisterPage} />
+					<Route exact path="/recover" component={RecoverPage} />
 					<Route exact path="/show-people-card" component={ShowPeopleCard} />
 					<Route exact path="/people-card-detail/:id" component={PeopleCardDetail} />
 					<Route exact path="/show-planet-card" component={ShowPlanetCard} />

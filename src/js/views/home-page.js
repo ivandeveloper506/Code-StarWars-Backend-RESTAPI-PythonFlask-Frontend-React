@@ -17,7 +17,7 @@ export default function HomePage() {
 	return (
 		<div className="container homePageClass">
 			<div className="row d-flex flex-row align-items-center justify-content-center homePageTitleClass">
-				<h1>Bienvenido al Star Wars Blog</h1>
+				<h1>Bienvenido a Star Wars Blog</h1>
 			</div>
 			<div className="row d-flex flex-row align-items-center justify-content-center mt-5 homePageTitleClass">
 				<p>¡Únete y juntos dominaremos la Galaxia!</p>
@@ -25,7 +25,7 @@ export default function HomePage() {
 
 			<div className="row d-flex flex-row align-items-center justify-content-center mt-5">
 				<div className="row d-flex flex-row align-items-center justify-content-center mt-5" />
-				<Link to="/register-page">
+				<Link to="/register">
 					<button type="button" className="btn btn-outline-warning btn-lg button-join-class">
 						SIII!, QUIERO UNIRME
 					</button>

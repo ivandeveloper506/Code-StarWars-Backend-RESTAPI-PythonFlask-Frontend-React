@@ -102,3 +102,54 @@ body{
 .button-join-class{
     font-size: 30px;
 }
+
+.register-main-class{
+    height: 400px;
+    margin-top: 100px;
+    background: white;
+}
+
+.container-login-main-class{
+    height: 900px;
+    margin-top: 70px;
+    background-image: url('.././img/login-bg.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.login-main-class{
+    height: 420px;
+    margin-top: 50px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.container-register-main-class{
+    height: 900px;
+    margin-top: 70px;
+    background-image: url('.././img/register-bg.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.register-main-class{
+    height: 680px;
+    margin-top: 50px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.container-recover-main-class{
+    height: 600px;
+    margin-top: 70px;
+    background-image: url('.././img/recover-bg.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.recover-main-class{
+    height: 250px;
+    margin-top: 50px;
+    border-radius: 5px;
+   background-color: rgba(0, 0, 0, 0.6);
+}

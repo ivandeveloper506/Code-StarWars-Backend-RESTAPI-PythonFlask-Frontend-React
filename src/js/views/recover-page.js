@@ -13,14 +13,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/index.scss";
 
-export default function LoginPage() {
+export default function RecoverPage() {
 	return (
-		<div className="container-fluid container-login-main-class">
+		<div className="container-fluid container-recover-main-class">
 			<div className="row d-flex flex-row align-items-center justify-content-center">
 				<div className="col" />
-				<div className="col-5 login-main-class">
+				<div className="col-5 recover-main-class">
 					<div className="row d-flex flex-row align-items-center justify-content-center mt-3">
-						<h1 className="text-white">Iniciar sesión</h1>
+						<h1 className="text-white">Recuperar Contraseña</h1>
 					</div>
 					<div>
 						<form>
@@ -36,47 +36,9 @@ export default function LoginPage() {
 								/>
 							</div>
 							<div className="m-3">
-								<label className="form-label text-white">Contraseña</label>
-								<input
-									type="password"
-									className="form-control"
-									id="exampleInputPassword1"
-									placeholder="Contraseña"
-									required
-								/>
-							</div>
-							<div className="m-3">
 								<button type="submit" className="btn btn-danger btn-block">
-									Ingresar
+									Recuperar
 								</button>
-							</div>
-							<div className="m-3 form-check">
-								<div className="row">
-									<div className="col-6">
-										<input type="checkbox" className="form-check-input" id="exampleCheck1" />
-										<h6>
-											<label className="form-check-label text-white">Recuérdame</label>
-										</h6>
-									</div>
-
-									<div className="col-6">
-										<Link to="/register">
-											<h6>
-												<span className="text-warning">¿No tienes cuenta aún?</span>
-											</h6>
-										</Link>
-									</div>
-								</div>
-
-								<div className="mt-3 row d-flex flex-row align-items-center justify-content-center">
-									<Link to="/recover">
-										<h6>
-											<span className="text-warning">
-												¡Necesito de la Fuerza para recuperar mi contraseña!
-											</span>
-										</h6>
-									</Link>
-								</div>
 							</div>
 						</form>
 					</div>
