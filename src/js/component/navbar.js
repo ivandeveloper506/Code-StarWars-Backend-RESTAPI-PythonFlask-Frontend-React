@@ -11,13 +11,19 @@ import { Link, NavLink } from "react-router-dom";
 import "../../styles/index.scss";
 import DropdownItem from "./dropdown-item";
 import { useHistory } from "react-router-dom";
+import AvatarLoginUser from "./avatar-login-user";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
 	const history = useHistory();
 
 	useEffect(() => {
-		history.push("/home-page");
-	}, []);
+		if (store.userLogged) {
+			history.push("/show-people-card");
+		} else {
+			history.push("/home-page");
+		}
+	});
 
 	return (
 		<nav className="navbar navbar-light mb-3 fixed-top navbarClass">
@@ -40,30 +46,10 @@ export const Navbar = () => {
 					Vehicles
 				</span>
 			</NavLink>
-
-			{/* <div className="ml-auto">
-				<NavLink to="/login-page">
-					<button type="button" className="btn btn-success">
-						Ingresar
-					</button>
-				</NavLink>
-			</div> */}
-
 			<div className="ml-auto d-flex justify-content-between">
-				<div className="mr-5">
-					<p>Usuario Conectado</p>
-				</div>
-				<div className="mr-3">
-					<NavLink to="/login">
-						{/* <span className="navbar-brand text-white ml-3 mb-0 h1">Ingresar</span> */}
-						<button type="button" className="btn btn-danger">
-							Iniciar sesión
-						</button>
-					</NavLink>
-				</div>
 				<div>
-					{/* Invoca el componente que permite crear la lista de items. */}
-					<DropdownItem />
+					{/* Invoca el componente que permite crear el la opción de iniciar sesión o el avatar */}
+					<AvatarLoginUser />
 				</div>
 			</div>
 		</nav>

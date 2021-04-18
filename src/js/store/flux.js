@@ -4,7 +4,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			peoples: [],
 			planets: [],
 			vehicles: [],
-			favorites: []
+			favorites: [],
+			userProfile: [],
+			userLogged: false
 		},
 		actions: {
 			loadPeoples: async () => {
@@ -17,19 +19,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch(url);
 					const data = await response.json();
 
-					console.log("*** data people API ***");
-					console.log(data);
-
-					console.log("*** data.results people API ***");
-					console.log(data.results);
-
 					setStore({ peoples: data });
 
 					localStorage.setItem("peoplesAPI", JSON.stringify(data));
 				} else {
-					console.log("*** data people localStorage ***");
-					console.log(localStoragePeoples);
-
 					// Si localStorage SI existe, entonces se cargan los datos de la variable local, para no volver a realizar Request.
 					setStore({ peoples: JSON.parse(localStoragePeoples) });
 				}
@@ -68,7 +61,90 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ vehicles: JSON.parse(localStorageVehicles) });
 				}
 			},
-			addFavorite: favoriteParam => {
+			getProfileUser: async userID => {
+				await fetch(`https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/users/${userID}`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${localStorage.getItem("x-access-token")}`
+					}
+				})
+					.then(response => {
+						if (response.status === 200) {
+							return response.json();
+						} else {
+							alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos del usuario.");
+						}
+					})
+					.then(data => {
+						setStore({ userProfile: data });
+					})
+					.catch(error => {
+						alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos del usuario.");
+
+						console.log("*** error  getFavorite***");
+						console.log(error);
+					});
+			},
+			getFavorite: async userID => {
+				await fetch(`https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/favorites/${userID}`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${localStorage.getItem("x-access-token")}`
+					}
+				})
+					.then(response => {
+						if (response.status === 200) {
+							return response.json();
+						} else {
+							alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos.");
+						}
+					})
+					.then(data => {
+						setStore({ favorites: data });
+					})
+					.catch(error => {
+						alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos.");
+
+						console.log("*** error  getFavorite***");
+						console.log(error);
+					});
+			},
+			storeFavorite: async (userId, name, favoriteId, favoriteType) => {
+				const body = {
+					user_id: userId,
+					name: name,
+					favorite_id: favoriteId,
+					favorite_type: favoriteType
+				};
+
+				await fetch(`https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/favorites`, {
+					method: "POST",
+					body: JSON.stringify(body),
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${localStorage.getItem("x-access-token")}`
+					}
+				})
+					.then(response => {
+						if (response.status === 201) {
+							return response.json();
+						} else {
+							alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos.");
+						}
+					})
+					.then(data => {
+						setStore({ favorites: data });
+					})
+					.catch(error => {
+						alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos.");
+
+						console.log("*** error  getFavorite***");
+						console.log(error);
+					});
+			},
+			addFavorite: (favoriteParam, userId, favoriteType) => {
 				// Esta función permite agregar elementos a la lista de favoritos
 				const store = getStore();
 				let newFavorite = store.favorites;
@@ -82,12 +158,51 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// Si no existe como favorito, se agrega
 					newFavorite.push(favoriteParam);
 
+					// Se almacena el favorito en la base de datos
+					getActions().storeFavorite(userId, favoriteParam.name, favoriteParam.id, favoriteType);
+
 					setStore({ favorites: newFavorite });
 				}
 			},
 			deleteFavorite: favoriteParam => {
 				// Esta función permite eliminar elementos de la lista de favoritos
 				setStore({ favorites: favoriteParam });
+			},
+			login: async (email, password) => {
+				const body = {
+					email: email,
+					password: password
+				};
+
+				await fetch("https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/users/login", {
+					method: "POST",
+					body: JSON.stringify(body),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(response => {
+						if (response.status === 200) {
+							setStore({ userLogged: true });
+
+							return response.json();
+						} else {
+							alert("DANGER - Ha ocurrido un error y no se pudo iniciar sesión");
+						}
+					})
+					.then(data => {
+						localStorage.setItem("x-access-token", data.token);
+
+						// Se obtienen los datos del usuario conectado.
+						getActions().getProfileUser(data.user_id);
+
+						// Se obtienen los datos de los favoritos del usuario conectado
+						getActions().getFavorite(data.user_id);
+					})
+					.catch(error => {
+						alert("DANGER - Ha ocurrido un error y no se pudo iniciar sesión");
+						console.log(error);
+					});
 			}
 		}
 	};

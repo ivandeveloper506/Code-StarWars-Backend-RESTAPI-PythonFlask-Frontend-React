@@ -9,11 +9,74 @@
 /*                  Cards de Vehicles.                                          */
 /********************************************************************************/
 
-import React from "react";
+import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/index.scss";
 
 export default function LoginPage() {
+	const { store, actions } = useContext(Context);
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	// const handleClick = () => {
+	// 	const opts = {
+	// 		method: "POST",
+	// 		headers: {
+	// 			"Content-Type": "application/json"
+	// 		},
+	// 		body: JSON.stringify({
+	// 			email: email,
+	// 			password: password
+	// 		})
+	// 	};
+
+	// 	fetch("https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/users/login", opts)
+	// 		.then(resp => {
+	// 			if (resp.status === 200) return resp.json();
+	// 			else alert("Ha ocurrido un error");
+	// 		})
+	// 		.then()
+	// 		.catch(error => {
+	// 			console.error("There was an error!!!", error);
+	// 		});
+	// };
+
+	const handleLogin = e => {
+		e.preventDefault();
+
+		actions.login(email, password);
+
+		// const body = {
+		// 	email: email,
+		// 	password: password
+		// };
+
+		// fetch("https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/users/login", {
+		// 	method: "POST",
+		// 	body: JSON.stringify(body),
+		// 	headers: {
+		// 		"Content-Type": "application/json"
+		// 	}
+		// })
+		// 	.then(response => {
+		// 		if (response.status === 200) {
+		// 			alert("SUCCESS - Ha logrado iniciar sesión correctamente.");
+		// 			return response.json();
+		// 		} else {
+		// 			alert("DANGER - Ha ocurrido un error y no se pudo iniciar sesión");
+		// 		}
+		// 	})
+		// 	.then(data => {
+		// 		console.log(data);
+		// 		sessionStorage.setItem("my_token", data.token);
+		// 	})
+		// 	.catch(error => {
+		// 		alert("DANGER - Ha ocurrido un error y no se pudo iniciar sesión");
+		// 		console.log(error);
+		// 	});
+	};
+
 	return (
 		<div className="container-fluid container-login-main-class">
 			<div className="row d-flex flex-row align-items-center justify-content-center">
@@ -23,7 +86,7 @@ export default function LoginPage() {
 						<h1 className="text-white">Iniciar sesión</h1>
 					</div>
 					<div>
-						<form>
+						<form onSubmit={handleLogin}>
 							<div className="m-3">
 								<label className="form-label text-white">Email</label>
 								<input
@@ -33,6 +96,8 @@ export default function LoginPage() {
 									aria-describedby="emailHelp"
 									placeholder="Email"
 									required
+									value={email}
+									onChange={e => setEmail(e.target.value)}
 								/>
 							</div>
 							<div className="m-3">
@@ -43,6 +108,8 @@ export default function LoginPage() {
 									id="exampleInputPassword1"
 									placeholder="Contraseña"
 									required
+									value={password}
+									onChange={e => setPassword(e.target.value)}
 								/>
 							</div>
 							<div className="m-3">
