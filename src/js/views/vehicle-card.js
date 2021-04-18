@@ -19,7 +19,7 @@ export default function VehicleCard(props) {
 	const { store, actions } = useContext(Context);
 
 	const addFavorite = () => {
-		actions.addFavorite(store.vehicles.filter(item => item.name == props.name));
+		actions.addFavorite(store.vehicles.filter(item => item.name == props.name), store.userProfile.id, 3);
 	};
 
 	return (

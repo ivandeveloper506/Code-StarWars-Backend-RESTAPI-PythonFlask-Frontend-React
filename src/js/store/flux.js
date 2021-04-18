@@ -128,17 +128,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then(response => {
-						if (response.status === 201) {
-							return response.json();
-						} else {
-							alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos.");
+						if (response.status != 201) {
+							alert("DANGER[response] - Ha ocurrido un error al tratar crear el favorito.");
 						}
 					})
-					.then(data => {
-						setStore({ favorites: data });
+					.catch(error => {
+						alert("DANGER[error] - Ha ocurrido un error al tratar crear el favorito.");
+
+						console.log("*** error  getFavorite***");
+						console.log(error);
+					});
+			},
+			delFavorite: async favoriteId => {
+				await fetch(`https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/favorites/${favoriteId}`, {
+					method: "DELETE",
+					headers: {
+						// "Content-Type": "application/json",
+						Authorization: `Bearer ${localStorage.getItem("x-access-token")}`
+					}
+				})
+					.then(response => {
+						if (response.status != 200) {
+							alert("DANGER[response] - Ha ocurrido un error al tratar eliminar el favorito.");
+						}
 					})
 					.catch(error => {
-						alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos.");
+						alert("DANGER[error] - Ha ocurrido un error al tratar eliminar el favorito.");
 
 						console.log("*** error  getFavorite***");
 						console.log(error);
@@ -164,9 +179,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ favorites: newFavorite });
 				}
 			},
-			deleteFavorite: favoriteParam => {
+			deleteFavorite: (favoriteParam, favoriteId) => {
 				// Esta función permite eliminar elementos de la lista de favoritos
-				setStore({ favorites: favoriteParam });
+
+				// Se elimina el favorito en la base de datos
+				getActions().delFavorite(favoriteId.id);
+
+				// Se obtienen los datos de los favoritos nuevamente para poderlos refrescar
+				getActions().getFavorite(favoriteId.user_id);
+				// setStore({ favorites: favoriteParam });
 			},
 			login: async (email, password) => {
 				const body = {

@@ -16,7 +16,7 @@ export default function DropdownItem() {
 	const { store, actions } = useContext(Context);
 
 	const deleteFavorite = deleteItem => {
-		actions.deleteFavorite(store.favorites.filter(item => item.name !== deleteItem));
+		actions.deleteFavorite(store.favorites.filter(item => item.name !== deleteItem.name), deleteItem);
 	};
 
 	return (
@@ -44,7 +44,7 @@ export default function DropdownItem() {
 											{item.name}
 										</div>
 										<div className="col-2">
-											<i className="fas fa-trash" onClick={() => deleteFavorite(item.name)} />
+											<i className="fas fa-trash" onClick={() => deleteFavorite(item)} />
 										</div>
 									</div>
 								</Dropdown.Item>

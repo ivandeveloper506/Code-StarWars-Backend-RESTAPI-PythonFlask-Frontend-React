@@ -25,6 +25,9 @@ export const Navbar = () => {
 		}
 	});
 
+	console.log("*** store.favorites ***");
+	console.log(store.favorites);
+
 	return (
 		<nav className="navbar navbar-light mb-3 fixed-top navbarClass">
 			<Link to="/home-page">

@@ -19,7 +19,7 @@ export default function PeopleCard(props) {
 	const { store, actions } = useContext(Context);
 
 	const addFavorite = () => {
-		actions.addFavorite(store.peoples.filter(item => item.name == props.title));
+		actions.addFavorite(store.peoples.filter(item => item.name == props.title), store.userProfile.id, 1);
 	};
 
 	return (

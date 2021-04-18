@@ -9,12 +9,24 @@
 /*                  Cards de Vehicles.                                          */
 /********************************************************************************/
 
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 import "../../styles/index.scss";
 
 export default function HomePage() {
-	return (
+	const { store, actions } = useContext(Context);
+
+	return store.userLogged ? (
+		<div className="container homePageClass">
+			<div className="row d-flex flex-row align-items-center justify-content-center homePageTitleClass">
+				<h1>Bienvenido a Star Wars Blog</h1>
+			</div>
+			<div className="row d-flex flex-row align-items-center justify-content-center mt-5 homePageTitleClass">
+				<p>¡Únete y juntos dominaremos la Galaxia!</p>
+			</div>
+		</div>
+	) : (
 		<div className="container homePageClass">
 			<div className="row d-flex flex-row align-items-center justify-content-center homePageTitleClass">
 				<h1>Bienvenido a Star Wars Blog</h1>

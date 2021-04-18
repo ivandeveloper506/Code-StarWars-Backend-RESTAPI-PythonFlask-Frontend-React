@@ -19,7 +19,7 @@ export default function PlanetCard(props) {
 	const { store, actions } = useContext(Context);
 
 	const addFavorite = () => {
-		actions.addFavorite(store.planets.filter(item => item.name == props.name));
+		actions.addFavorite(store.planets.filter(item => item.name == props.name), store.userProfile.id, 2);
 	};
 
 	return (
