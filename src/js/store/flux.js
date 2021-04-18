@@ -6,7 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			vehicles: [],
 			favorites: [],
 			userProfile: [],
-			userLogged: false
+			userLogged: false,
+			activeOption: ""
 		},
 		actions: {
 			loadPeoples: async () => {
@@ -81,9 +82,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => {
 						alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos del usuario.");
-
-						console.log("*** error  getFavorite***");
-						console.log(error);
 					});
 			},
 			getFavorite: async userID => {
@@ -106,9 +104,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => {
 						alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos.");
-
-						console.log("*** error  getFavorite***");
-						console.log(error);
 					});
 			},
 			storeFavorite: async (userId, name, favoriteId, favoriteType) => {
@@ -130,20 +125,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => {
 						if (response.status != 201) {
 							alert("DANGER[response] - Ha ocurrido un error al tratar crear el favorito.");
+						} else {
+							getActions().getFavorite(userId);
 						}
 					})
 					.catch(error => {
 						alert("DANGER[error] - Ha ocurrido un error al tratar crear el favorito.");
-
-						console.log("*** error  getFavorite***");
-						console.log(error);
 					});
 			},
 			delFavorite: async favoriteId => {
 				await fetch(`https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/favorites/${favoriteId}`, {
 					method: "DELETE",
 					headers: {
-						// "Content-Type": "application/json",
 						Authorization: `Bearer ${localStorage.getItem("x-access-token")}`
 					}
 				})
@@ -154,9 +147,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => {
 						alert("DANGER[error] - Ha ocurrido un error al tratar eliminar el favorito.");
-
-						console.log("*** error  getFavorite***");
-						console.log(error);
 					});
 			},
 			addFavorite: (favoriteParam, userId, favoriteType) => {
@@ -170,24 +160,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let existsFavorite = newFavorite.filter(item => item.name == favoriteParam.name);
 
 				if (existsFavorite.length === 0) {
-					// Si no existe como favorito, se agrega
-					newFavorite.push(favoriteParam);
-
 					// Se almacena el favorito en la base de datos
 					getActions().storeFavorite(userId, favoriteParam.name, favoriteParam.id, favoriteType);
-
-					setStore({ favorites: newFavorite });
 				}
 			},
 			deleteFavorite: (favoriteParam, favoriteId) => {
 				// Esta función permite eliminar elementos de la lista de favoritos
 
+				setStore({ favorites: favoriteParam });
+
 				// Se elimina el favorito en la base de datos
 				getActions().delFavorite(favoriteId.id);
-
-				// Se obtienen los datos de los favoritos nuevamente para poderlos refrescar
-				getActions().getFavorite(favoriteId.user_id);
-				// setStore({ favorites: favoriteParam });
 			},
 			login: async (email, password) => {
 				const body = {
@@ -219,11 +202,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						// Se obtienen los datos de los favoritos del usuario conectado
 						getActions().getFavorite(data.user_id);
+
+						getActions().activeOption("/show-people-card");
 					})
 					.catch(error => {
 						alert("DANGER - Ha ocurrido un error y no se pudo iniciar sesión");
 						console.log(error);
 					});
+			},
+			activeOption: option => {
+				setStore({ activeOption: option });
 			}
 		}
 	};

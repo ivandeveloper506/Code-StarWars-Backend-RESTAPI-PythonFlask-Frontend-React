@@ -40,7 +40,7 @@ export default function DropdownItem() {
 							<div key={index}>
 								<Dropdown.Item eventKey={index} className="dropdown-item-class">
 									<div className="row">
-										<div className="col-10" onClick={() => deleteFavorite(item.name)}>
+										<div className="col-10" onClick={() => deleteFavorite(item)}>
 											{item.name}
 										</div>
 										<div className="col-2">

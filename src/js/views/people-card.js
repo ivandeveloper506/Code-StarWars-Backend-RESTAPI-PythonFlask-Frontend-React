@@ -20,6 +20,8 @@ export default function PeopleCard(props) {
 
 	const addFavorite = () => {
 		actions.addFavorite(store.peoples.filter(item => item.name == props.title), store.userProfile.id, 1);
+
+		actions.activeOption("/show-people-card");
 	};
 
 	return (

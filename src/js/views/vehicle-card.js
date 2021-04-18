@@ -20,6 +20,8 @@ export default function VehicleCard(props) {
 
 	const addFavorite = () => {
 		actions.addFavorite(store.vehicles.filter(item => item.name == props.name), store.userProfile.id, 3);
+
+		actions.activeOption("/show-vehicle-card");
 	};
 
 	return (

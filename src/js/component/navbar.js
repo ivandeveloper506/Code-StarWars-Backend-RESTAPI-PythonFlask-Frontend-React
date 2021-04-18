@@ -19,14 +19,13 @@ export const Navbar = () => {
 
 	useEffect(() => {
 		if (store.userLogged) {
-			history.push("/show-people-card");
+			history.push(store.activeOption);
+
+			console.log("*** Paso por el navbar ***");
 		} else {
 			history.push("/home-page");
 		}
 	});
-
-	console.log("*** store.favorites ***");
-	console.log(store.favorites);
 
 	return (
 		<nav className="navbar navbar-light mb-3 fixed-top navbarClass">

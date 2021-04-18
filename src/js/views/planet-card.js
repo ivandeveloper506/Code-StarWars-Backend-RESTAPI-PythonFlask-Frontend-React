@@ -20,6 +20,8 @@ export default function PlanetCard(props) {
 
 	const addFavorite = () => {
 		actions.addFavorite(store.planets.filter(item => item.name == props.name), store.userProfile.id, 2);
+
+		actions.activeOption("/show-planet-card");
 	};
 
 	return (
