@@ -12,6 +12,10 @@ body{
     background-size: cover;
 }
 
+li{
+  list-style: none;
+}
+
 .topCardClass{
     margin: 100px;
 }
@@ -152,4 +156,24 @@ body{
     margin-top: 50px;
     border-radius: 5px;
    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.dropdown-avatar-class{
+    width: 250px;
+}
+
+.avatar-image-menu-class{
+    width: 45px;
+    height: 45px;
+}
+
+.avatar-image-info-class{
+    width: 85px;
+    height: 85px;
+}
+
+
+.fa-sign-out-alt:before,
+.fa-cog:before {
+    color: rgb(125, 125, 125);
 }

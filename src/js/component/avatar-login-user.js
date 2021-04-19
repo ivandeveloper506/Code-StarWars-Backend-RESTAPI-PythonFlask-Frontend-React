@@ -8,6 +8,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import DropdownItem from "./dropdown-item";
+import Avatar from "./avatar";
 import { Context } from "../store/appContext";
 import "../../styles/index.scss";
 
@@ -22,7 +23,7 @@ export default function AvatarLoginUser() {
 					<DropdownItem />
 				</div>
 				<div className="ml-3">
-					<p>IF</p>
+					<Avatar />
 				</div>
 			</div>
 		</div>

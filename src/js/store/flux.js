@@ -236,6 +236,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			activeOption: option => {
 				setStore({ activeOption: option });
+			},
+			logout: () => {
+				setStore({ userLogged: false });
 			}
 		}
 	};
