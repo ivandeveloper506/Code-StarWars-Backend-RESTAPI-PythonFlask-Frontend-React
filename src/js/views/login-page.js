@@ -19,62 +19,10 @@ export default function LoginPage() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	// const handleClick = () => {
-	// 	const opts = {
-	// 		method: "POST",
-	// 		headers: {
-	// 			"Content-Type": "application/json"
-	// 		},
-	// 		body: JSON.stringify({
-	// 			email: email,
-	// 			password: password
-	// 		})
-	// 	};
-
-	// 	fetch("https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/users/login", opts)
-	// 		.then(resp => {
-	// 			if (resp.status === 200) return resp.json();
-	// 			else alert("Ha ocurrido un error");
-	// 		})
-	// 		.then()
-	// 		.catch(error => {
-	// 			console.error("There was an error!!!", error);
-	// 		});
-	// };
-
 	const handleLogin = e => {
 		e.preventDefault();
 
 		actions.login(email, password);
-
-		// const body = {
-		// 	email: email,
-		// 	password: password
-		// };
-
-		// fetch("https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/users/login", {
-		// 	method: "POST",
-		// 	body: JSON.stringify(body),
-		// 	headers: {
-		// 		"Content-Type": "application/json"
-		// 	}
-		// })
-		// 	.then(response => {
-		// 		if (response.status === 200) {
-		// 			alert("SUCCESS - Ha logrado iniciar sesión correctamente.");
-		// 			return response.json();
-		// 		} else {
-		// 			alert("DANGER - Ha ocurrido un error y no se pudo iniciar sesión");
-		// 		}
-		// 	})
-		// 	.then(data => {
-		// 		console.log(data);
-		// 		sessionStorage.setItem("my_token", data.token);
-		// 	})
-		// 	.catch(error => {
-		// 		alert("DANGER - Ha ocurrido un error y no se pudo iniciar sesión");
-		// 		console.log(error);
-		// 	});
 	};
 
 	return (

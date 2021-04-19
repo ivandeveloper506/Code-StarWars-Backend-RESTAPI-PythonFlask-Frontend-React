@@ -210,6 +210,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error);
 					});
 			},
+			register: async userBody => {
+				await fetch(`https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/users/register`, {
+					method: "POST",
+					body: JSON.stringify(userBody),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(response => {
+						if (response.status === 201) {
+							alert("SUCCESS - Usuario registrado satisfactoriamente.");
+
+							// Se logró registrar correctamente, se llama inmediatamente a que se loguee de una vez
+							getActions().login(userBody.email, userBody.password);
+
+							return response.json();
+						} else {
+							alert("DANGER[response] - Ha ocurrido un error al tratar crear el usuario.");
+						}
+					})
+					.catch(error => {
+						alert("DANGER[error] - Ha ocurrido un error al tratar crear el usuario.");
+					});
+			},
 			activeOption: option => {
 				setStore({ activeOption: option });
 			}

@@ -9,11 +9,35 @@
 /*                  Cards de Vehicles.                                          */
 /********************************************************************************/
 
-import React from "react";
+import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/index.scss";
 
 export default function RegisterPage() {
+	const { store, actions } = useContext(Context);
+	const [name, setName] = useState("");
+	const [firstSurname, setFirstSurname] = useState("");
+	const [secondSurname, setSecondSurname] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	const handleRegister = e => {
+		e.preventDefault();
+
+		const userBody = {
+			name: name,
+			first_surname: firstSurname,
+			second_surname: secondSurname,
+			user_image: "",
+			email: email,
+			password: password,
+			is_active: true
+		};
+
+		actions.register(userBody);
+	};
+
 	return (
 		<div className="container-fluid container-register-main-class">
 			<div className="row d-flex flex-row align-items-center justify-content-center">
@@ -23,15 +47,17 @@ export default function RegisterPage() {
 						<h1 className="text-white">Registro Nuevo Usuario</h1>
 					</div>
 					<div>
-						<form>
+						<form onSubmit={handleRegister}>
 							<div className="m-3">
 								<label className="form-label text-white">Nombre</label>
 								<input
 									type="name"
 									className="form-control"
-									id="exampleInputName"
+									id="inputName"
 									placeholder="Ingrese su nombre..."
 									required
+									value={name}
+									onChange={e => setName(e.target.value)}
 								/>
 							</div>
 							<div className="m-3">
@@ -39,9 +65,11 @@ export default function RegisterPage() {
 								<input
 									type="firstSurname"
 									className="form-control"
-									id="firstSurnameID"
+									id="firstSurname"
 									placeholder="Ingrese su primer apellido..."
 									required
+									value={firstSurname}
+									onChange={e => setFirstSurname(e.target.value)}
 								/>
 							</div>
 							<div className="m-3">
@@ -49,8 +77,10 @@ export default function RegisterPage() {
 								<input
 									type="secondSurname"
 									className="form-control"
-									id="secondSurnameID"
+									id="secondSurname"
 									placeholder="Ingrese su segundo apellido..."
+									value={secondSurname}
+									onChange={e => setSecondSurname(e.target.value)}
 								/>
 							</div>
 							<div className="m-3">
@@ -61,6 +91,8 @@ export default function RegisterPage() {
 									id="exampleInputEmail"
 									placeholder="Ingrese su Email..."
 									required
+									value={email}
+									onChange={e => setEmail(e.target.value)}
 								/>
 							</div>
 							<div className="m-3">
@@ -71,16 +103,8 @@ export default function RegisterPage() {
 									id="exampleInputPassword1"
 									placeholder="Ingrese su contraseña..."
 									required
-								/>
-							</div>
-							<div className="m-3">
-								<label className="form-label text-white">Usuario</label>
-								<input
-									type="userName"
-									className="form-control"
-									id="userNameID"
-									placeholder="Ingrese su usuario..."
-									required
+									value={password}
+									onChange={e => setPassword(e.target.value)}
 								/>
 							</div>
 							<div className="m-3">
