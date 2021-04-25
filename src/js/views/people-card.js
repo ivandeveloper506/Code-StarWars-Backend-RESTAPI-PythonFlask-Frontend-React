@@ -19,7 +19,15 @@ export default function PeopleCard(props) {
 	const { store, actions } = useContext(Context);
 
 	const addFavorite = () => {
-		actions.addFavorite(store.peoples.filter(item => item.name == props.title), store.userProfile.id, 1);
+		if (store.userLogged) {
+			actions.addFavorite(
+				store.peoples.filter(item => item.name == props.title),
+				store.userProfile.id,
+				1
+			);
+		} else {
+			alert("Debe iniciar sesión para poder agregar favoritos!");
+		}
 
 		actions.activeOption("/show-people-card");
 	};

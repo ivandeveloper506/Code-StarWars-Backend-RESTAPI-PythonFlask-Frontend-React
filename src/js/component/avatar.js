@@ -25,26 +25,30 @@ export default function Avatar() {
 		console.log("*** Editar Usuario ***");
 	};
 
-	const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-		<a
-			href=""
-			ref={ref}
-			onClick={e => {
-				e.preventDefault();
-				onClick(e);
-			}}>
-			{children}
-		</a>
-	));
+	// const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+	// 	<a
+	// 		href=""
+	// 		ref={ref}
+	// 		onClick={e => {
+	// 			e.preventDefault();
+	// 			onClick(e);
+	// 		}}>
+	// 		{children}
+	// 	</a>
+	// ));
 
 	return (
 		<div>
-			<Dropdown>
+            <p>perfil</p>
+			{/* <Dropdown>
 				<Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
 					<img
 						className="avatar-image-menu-class rounded-circle"
 						src={
-							store.userProfile.user_image || store.userProfile.user_image === ""
+							store.userProfile.user_image ||
+							store.userProfile.user_image === "" ||
+							store.userProfile.user_image === undefined ||
+							store.userProfile.user_image === null
 								? NoImageUser
 								: store.userProfile.user_image
 						}
@@ -57,7 +61,10 @@ export default function Avatar() {
 						<img
 							className="avatar-image-info-class rounded-circle"
 							src={
-								store.userProfile.user_image || store.userProfile.user_image === ""
+								store.userProfile.user_image ||
+								store.userProfile.user_image === "" ||
+								store.userProfile.user_image === undefined ||
+								store.userProfile.user_image === null
 									? NoImageUser
 									: store.userProfile.user_image
 							}
@@ -90,7 +97,7 @@ export default function Avatar() {
 						</div>
 					</Dropdown.Item>
 				</Dropdown.Menu>
-			</Dropdown>
+			</Dropdown> */}
 		</div>
 	);
 }

@@ -1,3 +1,5 @@
+const baseUrlAPI = "https://3000-silver-wombat-ydhlr983.ws-us03.gitpod.io/api";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -16,7 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				if (localStoragePeoples === null || localStoragePeoples === undefined) {
 					// Si localStorage NO existe, entonces se cargan los datos de la API.
-					const url = "https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/peoples";
+					const url = `${baseUrlAPI}/peoples`;
 					const response = await fetch(url);
 					const data = await response.json();
 
@@ -34,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				if (localStoragePlanets === null || localStoragePlanets === undefined) {
 					// Si localStorage NO existe, entonces se cargan los datos de la API.
-					const url = "https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/planets";
+					const url = `${baseUrlAPI}/planets`;
 					const response = await fetch(url);
 					const data = await response.json();
 					setStore({ planets: data });
@@ -51,7 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				if (localStorageVehicles === null || localStorageVehicles === undefined) {
 					// Si localStorage NO existe, entonces se cargan los datos de la API.
-					const url = "https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/vehicles";
+					const url = `${baseUrlAPI}/vehicles`;
 					const response = await fetch(url);
 					const data = await response.json();
 					setStore({ vehicles: data });
@@ -63,7 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			getProfileUser: async userID => {
-				await fetch(`https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/users/${userID}`, {
+				await fetch(`${baseUrlAPI}/users/${userID}`, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -85,7 +87,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 			getFavorite: async userID => {
-				await fetch(`https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/favorites/${userID}`, {
+				await fetch(`${baseUrlAPI}/favorites/${userID}`, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -96,14 +98,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.status === 200) {
 							return response.json();
 						} else {
-							alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos.");
+							alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos de favoritos.");
 						}
 					})
 					.then(data => {
 						setStore({ favorites: data });
 					})
 					.catch(error => {
-						alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos.");
+						alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos de favoritos,");
 					});
 			},
 			storeFavorite: async (userId, name, favoriteId, favoriteType) => {
@@ -114,7 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					favorite_type: favoriteType
 				};
 
-				await fetch(`https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/favorites`, {
+				await fetch(`${baseUrlAPI}/favorites`, {
 					method: "POST",
 					body: JSON.stringify(body),
 					headers: {
@@ -134,7 +136,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 			delFavorite: async favoriteId => {
-				await fetch(`https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/favorites/${favoriteId}`, {
+				await fetch(`${baseUrlAPI}/favorites/${favoriteId}`, {
 					method: "DELETE",
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("x-access-token")}`
@@ -178,7 +180,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					password: password
 				};
 
-				await fetch("https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/users/login", {
+				await fetch(`${baseUrlAPI}/users/login`, {
 					method: "POST",
 					body: JSON.stringify(body),
 					headers: {
@@ -203,7 +205,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						// Se obtienen los datos de los favoritos del usuario conectado
 						getActions().getFavorite(data.user_id);
 
-						getActions().activeOption("/show-people-card");
+						getActions().activeOption("/home-page");
 					})
 					.catch(error => {
 						alert("DANGER - Ha ocurrido un error y no se pudo iniciar sesión");
@@ -211,7 +213,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 			register: async userBody => {
-				await fetch(`https://3000-amber-chickadee-hbabkzx9.ws-us03.gitpod.io/api/users/register`, {
+				await fetch(`${baseUrlAPI}/users/register`, {
 					method: "POST",
 					body: JSON.stringify(userBody),
 					headers: {

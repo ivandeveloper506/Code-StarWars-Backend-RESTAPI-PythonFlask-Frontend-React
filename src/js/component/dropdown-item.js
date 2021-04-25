@@ -16,7 +16,10 @@ export default function DropdownItem() {
 	const { store, actions } = useContext(Context);
 
 	const deleteFavorite = deleteItem => {
-		actions.deleteFavorite(store.favorites.filter(item => item.name !== deleteItem.name), deleteItem);
+		actions.deleteFavorite(
+			store.favorites.filter(item => item.name !== deleteItem.name),
+			deleteItem
+		);
 	};
 
 	return (
