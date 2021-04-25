@@ -26,6 +26,7 @@ export const Navbar = () => {
 			history.push("/home-page");
 		}
 	});
+
 	return (
 		<nav className="navbar navbar-light mb-3 fixed-top navbarClass">
 			<Link to="/home-page">
@@ -50,8 +51,8 @@ export const Navbar = () => {
 			<div className="ml-auto d-flex justify-content-between">
 				<div>
 					{/* Invoca el componente que permite crear el la opción de iniciar sesión o el avatar */}
-					{/* <AvatarLoginUser /> */}
-
+					<AvatarLoginUser />
+				</div>
 			</div>
 		</nav>
 	);
