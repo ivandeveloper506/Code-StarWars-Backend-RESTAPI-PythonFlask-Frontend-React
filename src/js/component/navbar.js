@@ -18,13 +18,12 @@ export const Navbar = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		if (store.userLogged) {
-			history.push(store.activeOption);
-
-			console.log("*** Paso por el navbar ***");
-		} else {
-			history.push("/home-page");
-		}
+		// if (store.userLogged) {
+		// 	history.push(store.activeOption);
+		// } else {
+		// 	history.push("/home-page");
+		// }
+		history.push(store.activeOption);
 	});
 
 	return (

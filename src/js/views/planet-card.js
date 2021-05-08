@@ -14,6 +14,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import PropType from "prop-types";
 import "../../styles/index.scss";
+import FavoriteAlert from "../component/favorite-alert";
 
 export default function PlanetCard(props) {
 	const { store, actions } = useContext(Context);
@@ -26,7 +27,7 @@ export default function PlanetCard(props) {
 				2
 			);
 		} else {
-			alert("Debe iniciar sesión para poder agregar favoritos!");
+			FavoriteAlert();
 		}
 
 		actions.activeOption("/show-planet-card");

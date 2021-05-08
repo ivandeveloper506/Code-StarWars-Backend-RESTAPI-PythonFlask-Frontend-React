@@ -12,6 +12,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/index.scss";
+import Swal from "sweetalert2";
+
+const handleRecover = () => {
+	Swal.fire({
+		position: "top-end",
+		icon: "info",
+		text: "¡Funcionalidad no implementada en esta versión!",
+		showConfirmButton: false,
+		timerProgressBar: true,
+		timer: 2000
+	});
+
+	actions.activeOption("/recover");
+};
 
 export default function RecoverPage() {
 	return (
@@ -23,7 +37,7 @@ export default function RecoverPage() {
 						<h1 className="text-white">Recuperar Contraseña</h1>
 					</div>
 					<div>
-						<form>
+						<form onSubmit={handleRecover}>
 							<div className="m-3">
 								<label className="form-label text-white">Email</label>
 								<input

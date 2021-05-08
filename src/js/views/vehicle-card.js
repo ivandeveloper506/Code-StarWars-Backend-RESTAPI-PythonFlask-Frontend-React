@@ -14,6 +14,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import PropType from "prop-types";
 import "../../styles/index.scss";
+import FavoriteAlert from "../component/favorite-alert";
 
 export default function VehicleCard(props) {
 	const { store, actions } = useContext(Context);
@@ -26,7 +27,7 @@ export default function VehicleCard(props) {
 				3
 			);
 		} else {
-			alert("Debe iniciar sesión para poder agregar favoritos!");
+			FavoriteAlert();
 		}
 
 		actions.activeOption("/show-vehicle-card");

@@ -1,4 +1,6 @@
-const baseUrlAPI = "https://3000-silver-wombat-ydhlr983.ws-us03.gitpod.io/api";
+import Swal from "sweetalert2";
+
+const baseUrlAPI = "https://3000-blush-mosquito-p87aojen.ws-us03.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -76,14 +78,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.status === 200) {
 							return response.json();
 						} else {
-							alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos del usuario.");
+							Swal.fire({
+								position: "top-end",
+								icon: "error",
+								text: "Ocurrio un error al tratar de recuperar los datos del perfil de usuario.",
+								showConfirmButton: false,
+								timerProgressBar: true,
+								timer: 1500
+							});
 						}
 					})
 					.then(data => {
 						setStore({ userProfile: data });
 					})
 					.catch(error => {
-						alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos del usuario.");
+						Swal.fire({
+							position: "top-end",
+							icon: "error",
+							text: "Ocurrio un error al tratar de recuperar los datos del perfil de usuario.",
+							showConfirmButton: false,
+							timerProgressBar: true,
+							timer: 1500
+						});
 					});
 			},
 			getFavorite: async userID => {
@@ -98,14 +114,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.status === 200) {
 							return response.json();
 						} else {
-							alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos de favoritos.");
+							Swal.fire({
+								position: "top-end",
+								icon: "error",
+								text: "Ocurrio un error al tratar de recuperar los datos de los favoritos.",
+								showConfirmButton: false,
+								timerProgressBar: true,
+								timer: 1500
+							});
 						}
 					})
 					.then(data => {
 						setStore({ favorites: data });
 					})
 					.catch(error => {
-						alert("DANGER - Ha ocurrido un error al tratar de recuperar los datos de favoritos,");
+						Swal.fire({
+							position: "top-end",
+							icon: "error",
+							text: "Ocurrio un error al tratar de recuperar los datos de los favoritos.",
+							showConfirmButton: false,
+							timerProgressBar: true,
+							timer: 1500
+						});
 					});
 			},
 			storeFavorite: async (userId, name, favoriteId, favoriteType) => {
@@ -126,13 +156,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => {
 						if (response.status != 201) {
-							alert("DANGER[response] - Ha ocurrido un error al tratar crear el favorito.");
+							Swal.fire({
+								position: "top-end",
+								icon: "error",
+								text: "Ocurrio un error al tratar de agregar el favorito.",
+								showConfirmButton: false,
+								timerProgressBar: true,
+								timer: 1500
+							});
 						} else {
 							getActions().getFavorite(userId);
 						}
 					})
 					.catch(error => {
-						alert("DANGER[error] - Ha ocurrido un error al tratar crear el favorito.");
+						Swal.fire({
+							position: "top-end",
+							icon: "error",
+							text: "Ocurrio un error al tratar de agregar el favorito.",
+							showConfirmButton: false,
+							timerProgressBar: true,
+							timer: 1500
+						});
 					});
 			},
 			delFavorite: async favoriteId => {
@@ -144,11 +188,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => {
 						if (response.status != 200) {
-							alert("DANGER[response] - Ha ocurrido un error al tratar eliminar el favorito.");
+							Swal.fire({
+								position: "top-end",
+								icon: "error",
+								text: "Ocurrio un error al tratar de eliminar el favorito.",
+								showConfirmButton: false,
+								timerProgressBar: true,
+								timer: 1500
+							});
 						}
 					})
 					.catch(error => {
-						alert("DANGER[error] - Ha ocurrido un error al tratar eliminar el favorito.");
+						Swal.fire({
+							position: "top-end",
+							icon: "error",
+							text: "Ocurrio un error al tratar de eliminar el favorito.",
+							showConfirmButton: false,
+							timerProgressBar: true,
+							timer: 1500
+						});
 					});
 			},
 			addFavorite: (favoriteParam, userId, favoriteType) => {
@@ -191,9 +249,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.status === 200) {
 							setStore({ userLogged: true });
 
+							Swal.fire({
+								position: "top-end",
+								icon: "success",
+								text: "¡La sesión ha sido iniciada exitosamente!",
+								showConfirmButton: false,
+								timerProgressBar: true,
+								timer: 1500
+							});
+
 							return response.json();
 						} else {
-							alert("DANGER - Ha ocurrido un error y no se pudo iniciar sesión");
+							Swal.fire({
+								position: "top-end",
+								icon: "error",
+								text: "Ocurrio un error al tratar de iniciar sesión.",
+								showConfirmButton: false,
+								timerProgressBar: true,
+								timer: 1500
+							});
 						}
 					})
 					.then(data => {
@@ -208,8 +282,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 						getActions().activeOption("/home-page");
 					})
 					.catch(error => {
-						alert("DANGER - Ha ocurrido un error y no se pudo iniciar sesión");
-						console.log(error);
+						Swal.fire({
+							position: "top-end",
+							icon: "error",
+							text: "Ocurrio un error al tratar de iniciar sesión.",
+							showConfirmButton: false,
+							timerProgressBar: true,
+							timer: 1500
+						});
 					});
 			},
 			register: async userBody => {
@@ -222,18 +302,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => {
 						if (response.status === 201) {
-							alert("SUCCESS - Usuario registrado satisfactoriamente.");
+							Swal.fire({
+								position: "top-end",
+								icon: "success",
+								text: "¡La cuenta ha sido creada exitosamente!",
+								showConfirmButton: false,
+								timerProgressBar: true,
+								timer: 1500
+							});
 
 							// Se logró registrar correctamente, se llama inmediatamente a que se loguee de una vez
 							getActions().login(userBody.email, userBody.password);
 
 							return response.json();
 						} else {
-							alert("DANGER[response] - Ha ocurrido un error al tratar crear el usuario.");
+							Swal.fire({
+								position: "top-end",
+								icon: "error",
+								text: "Ocurrio un error al tratar de crear la cuenta.",
+								showConfirmButton: false,
+								timerProgressBar: true,
+								timer: 1500
+							});
 						}
 					})
 					.catch(error => {
-						alert("DANGER[error] - Ha ocurrido un error al tratar crear el usuario.");
+						Swal.fire({
+							position: "top-end",
+							icon: "error",
+							text: "Ocurrio un error al tratar de crear la cuenta.",
+							showConfirmButton: false,
+							timerProgressBar: true,
+							timer: 1500
+						});
 					});
 			},
 			activeOption: option => {
