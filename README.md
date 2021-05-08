@@ -5,8 +5,13 @@
 <a href="https://www.loom.com/share/f37c6838b3f1496c95111e515e83dd9b"><img src="https://github.com/4GeeksAcademy/react-hello-webapp/blob/master/src/img/how-to.png?raw=true" /></a>
 </p>
 
+## *** IMPORTANTE ***
+## La funcionalidad de este code esta asociada al Backend en el siguiente URL:
+## https://github.com/ivandeveloper506/Code-StarWars-RESTAPI-With-Python-Flask.git
+## Por tanto, se debe iniciar este para poder validar el Frontend
 
 ### Requirements:
+
 - Make sure you are using node version 10
 
 1. Install the packages:
